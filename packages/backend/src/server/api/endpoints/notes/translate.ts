@@ -5,7 +5,7 @@
 
 import { URLSearchParams } from 'node:url';
 import { Injectable } from '@nestjs/common';
-import googletr from '@vitalets/google-translate-api';
+import { translate } from '@vitalets/google-translate-api';
 import { Endpoint } from '@/server/api/endpoint-base.js';
 import { NoteEntityService } from '@/core/entities/NoteEntityService.js';
 import { MetaService } from '@/core/MetaService.js';
@@ -139,12 +139,12 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 			} else if (instance.translatorType === 'GoogleNoAPI') {
 				let targetLang = ps.targetLang;
 				if (targetLang.includes('-')) targetLang = targetLang.split('-')[0];
-		
-				const json = await googletr(note.text, { to: targetLang });
-		
+				
+				const { text, raw } = await translate(note.text, { to: targetLang });
+				
 				return {
-					sourceLang: json.from.language.iso,
-					text: json.text,
+					sourceLang: raw.src,
+					text: text,
 					translator: translatorServices,
 				};
 			}
