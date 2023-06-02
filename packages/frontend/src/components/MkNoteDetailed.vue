@@ -89,8 +89,13 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<div v-if="translating || translation" :class="$style.translation">
 					<MkLoading v-if="translating" mini/>
 					<div v-else>
-						<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}: </b>
-						<Mfm :text="translation.text" :author="appearNote.user" :nyaize="'respect'" :emojiUrls="appearNote.emojis"/>
+						<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}:</b><hr style="margin: 10px 0;">
+						<Mfm :text="translation.text" :author="appearNote.user" nyaize="'respect'" :i="$i" :emojiUrls="appearNote.emojis"/>
+						<div v-if="translation.translator == 'ctav3'">
+							<hr>
+							<img v-if="defaultStore.state.darkMode == false" src="/client-assets/color-short.svg">
+							<img v-else src="/client-assets/white-short.svg"/>
+						</div>
 					</div>
 				</div>
 				<MkButton v-if="!allowAnim && animated" :class="$style.playMFMButton" :small="true" @click="animatedMFM()" @click.stop><i class="ph-play ph-bold ph-lg "></i> {{ i18n.ts._animatedMFM.play }}</MkButton>

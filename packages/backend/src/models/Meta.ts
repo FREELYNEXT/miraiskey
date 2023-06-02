@@ -337,6 +337,36 @@ export class MiMeta {
 	public deeplIsPro: boolean;
 
 	@Column('varchar', {
+		length: 5120,
+		nullable: true,
+	})
+	public ctav3SaKey: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public ctav3ProjectId: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public ctav3Location: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public ctav3Model: string | null;
+
+	@Column('varchar', {
+		length: 1024,
+		nullable: true,
+	})
+	public ctav3Glossary: string | null;
+
+	@Column('varchar', {
 		length: 1024,
 		nullable: true,
 	})
