@@ -1,5 +1,7 @@
 _lang_: "日本語"
 
+translateNote: "ノートを翻訳する"
+showTranslateButtonInNote: "ノート本文に翻訳ボタンを表示"
 headlineMisskey: "ノートでつながるネットワーク"
 introMisskey: "ようこそ！Miraiskeyは、オープンソースの分散型マイクロブログサービスです。\n「ノート」を作成して、いま起こっていることを共有したり、あなたについて皆に発信しよう📡\n「リアクション」機能で、皆のノートに素早く反応を追加することもできます👍\n新しい世界を探検しよう🚀"
 poweredByMisskeyDescription: "{name}は、オープンソースのプラットフォーム<b>Miraiskey</b>のサーバーのひとつです。"
