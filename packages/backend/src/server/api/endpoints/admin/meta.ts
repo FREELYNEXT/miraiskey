@@ -109,6 +109,10 @@ export const meta = {
 				type: 'boolean',
 				optional: false, nullable: false,
 			},
+			translatorType: {
+				type: 'string',
+				optional: false, nullable: true,
+			},
 			silencedHosts: {
 				type: 'array',
 				optional: true,
@@ -400,7 +404,9 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				defaultLike: instance.defaultLike,
 				enableEmail: instance.enableEmail,
 				enableServiceWorker: instance.enableServiceWorker,
-				translatorAvailable: instance.deeplAuthKey != null,
+				// translatorAvailable: instance.deeplAuthKey != null,
+		        translatorAvailable: instance.translatorType != null,
+		        translatorType: instance.translatorType,
 				cacheRemoteFiles: instance.cacheRemoteFiles,
 				cacheRemoteSensitiveFiles: instance.cacheRemoteSensitiveFiles,
 				pinnedUsers: instance.pinnedUsers,
