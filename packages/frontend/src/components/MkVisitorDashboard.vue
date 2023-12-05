@@ -105,7 +105,7 @@ function showMenu(ev) {
 		text: i18n.ts.aboutMisskey,
 		icon: 'sk-icons sk-shark ph-bold',
 		action: () => {
-			os.pageWindow('/about-sharkey');
+			os.pageWindow('/about-miraiskey');
 		},
 	}, null, (instance.impressumUrl) ? {
 		text: i18n.ts.impressum,

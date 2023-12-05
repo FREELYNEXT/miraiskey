@@ -113,7 +113,7 @@ export function openInstanceMenu(ev: MouseEvent) {
 		type: 'link',
 		text: i18n.ts.aboutMisskey,
 		icon: 'sk-icons sk-shark ph-bold',
-		to: '/about-sharkey',
+		to: '/about-miraiskey',
 	}], ev.currentTarget ?? ev.target, {
 		align: 'left',
 	});
