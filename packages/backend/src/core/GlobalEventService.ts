@@ -160,6 +160,7 @@ export interface AdminEventTypes {
 		targetUserId: MiUser['id'],
 		reporterId: MiUser['id'],
 		comment: string;
+		notes: any[];
 	};
 }
 //#endregion
