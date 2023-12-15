@@ -158,8 +158,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 			<MkRadios v-model="cornerRadius">
 				<template #label>{{ i18n.ts.cornerRadius }}</template>
-				<option :value="null"><i class="sk-icons sk-shark ph-bold" style="top: 2px;position: relative;"></i> Sharkey</option>
-				<option value="misskey"><i class="sk-icons sk-misskey ph-bold" style="top: 2px;position: relative;"></i> Misskey</option>
+				<option value="misskey"><i class="sk-icons sk-shark ph-bold" style="top: 2px;position: relative;"></i> Sharkey</option>
+				<option :value="null"><i class="sk-icons sk-misskey ph-bold" style="top: 2px;position: relative;"></i> Misskey</option>
 			</MkRadios>
 		</div>
 	</FormSection>
