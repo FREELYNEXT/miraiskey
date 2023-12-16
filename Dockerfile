@@ -6,7 +6,7 @@ FROM node:${NODE_VERSION} as build
 
 RUN corepack enable
 
-WORKDIR /sharkey
+WORKDIR /miraiskey
 
 RUN apk add git linux-headers build-base
 
@@ -31,20 +31,20 @@ RUN rm -rf .git
 
 FROM node:${NODE_VERSION}
 
-WORKDIR /sharkey
+WORKDIR /miraiskey
 
 RUN apk add ffmpeg tini
 
-COPY --from=build /sharkey/built ./built
-COPY --from=build /sharkey/node_modules ./node_modules
-COPY --from=build /sharkey/packages/backend/built ./packages/backend/built
-COPY --from=build /sharkey/packages/backend/node_modules ./packages/backend/node_modules
-COPY --from=build /sharkey/packages/megalodon/lib ./packages/megalodon/lib
-COPY --from=build /sharkey/packages/megalodon/node_modules ./packages/megalodon/node_modules
-COPY --from=build /sharkey/packages/misskey-js/built ./packages/misskey-js/built
-COPY --from=build /sharkey/packages/misskey-js/node_modules ./packages/misskey-js/node_modules
-COPY --from=build /sharkey/fluent-emojis ./fluent-emojis
-COPY --from=build /sharkey/sharkey-assets ./packages/frontend/assets
+COPY --from=build /miraiskey/built ./built
+COPY --from=build /miraiskey/node_modules ./node_modules
+COPY --from=build /miraiskey/packages/backend/built ./packages/backend/built
+COPY --from=build /miraiskey/packages/backend/node_modules ./packages/backend/node_modules
+COPY --from=build /miraiskey/packages/megalodon/lib ./packages/megalodon/lib
+COPY --from=build /miraiskey/packages/megalodon/node_modules ./packages/megalodon/node_modules
+COPY --from=build /miraiskey/packages/misskey-js/built ./packages/misskey-js/built
+COPY --from=build /miraiskey/packages/misskey-js/node_modules ./packages/misskey-js/node_modules
+COPY --from=build /miraiskey/fluent-emojis ./fluent-emojis
+COPY --from=build /miraiskey/sharkey-assets ./packages/frontend/assets
 
 COPY package.json ./package.json
 COPY pnpm-workspace.yaml ./pnpm-workspace.yaml
