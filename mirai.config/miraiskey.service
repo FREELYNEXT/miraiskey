@@ -1,0 +1,17 @@
+[Unit]
+Description=Miraiskey Service
+
+[Service]
+Type=simple
+User=miraiskey
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/home/miraiskey/miraiskey
+Environment="NODE_ENV=production"
+TimeoutSec=60
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=miraiskey
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

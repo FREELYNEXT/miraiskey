@@ -1,5 +1,5 @@
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Misskey configuration
+# Miraiskey configuration
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 #   ┌─────┐
@@ -15,11 +15,11 @@ url: https://example.tld/
 #───┘ Port and TLS settings └───────────────────────────────────
 
 #
-# Misskey requires a reverse proxy to support HTTPS connections.
+# Miraiskey requires a reverse proxy to support HTTPS connections.
 #
 #                 +----- https://example.tld/ ------------+
 #   +------+      |+-------------+      +----------------+|
-#   | User | ---> || Proxy (443) | ---> | Misskey (3000) ||
+#   | User | ---> || Proxy (443) | ---> | Miraiskey (3000) ||
 #   +------+      |+-------------+      +----------------+|
 #                 +---------------------------------------+
 #
@@ -27,11 +27,11 @@ url: https://example.tld/
 #   An encrypted connection with HTTPS is highly recommended
 #   because tokens may be transferred in GET requests.
 
-# The port that your Misskey server should listen on.
+# The port that your Miraiskey server should listen on.
 port: 3000
 
 # You can also use UNIX domain socket.
-# socket: /path/to/misskey.sock
+# socket: /path/to/Miraiskey.sock
 # chmodSocket: '777'
 
 #   ┌──────────────────────────┐
@@ -42,11 +42,11 @@ db:
   port: 5432
 
   # Database name
-  db: misskey
+  db: mk1
 
   # Auth
-  user: example-misskey-user
-  pass: example-misskey-pass
+  user: example-miraiskey-user
+  pass: example-miraiskey-pass
 
   # Whether disable Caching queries
   #disableCache: true
@@ -203,7 +203,7 @@ proxyRemoteFiles: true
 
 # Movie Thumbnail Generation URL
 # There is no reference implementation.
-# For example, Misskey will point to the following URL:
+# For example, Miraiskey will point to the following URL:
 #   https://example.com/thumbnail.webp?thumbnail=1&url=https%3A%2F%2Fstorage.example.com%2Fpath%2Fto%2Fvideo.mp4
 #videoThumbnailGenerator: https://example.com
 
@@ -218,4 +218,4 @@ signToActivityPubGet: true
 #maxFileSize: 262144000
 
 # PID File of master process
-#pidFile: /tmp/misskey.pid
+#pidFile: /tmp/Miraiskey.pid
