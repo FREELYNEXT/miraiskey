@@ -1,9 +1,9 @@
 <div align="center">
-<a href="https://git.freelynext.sbs/FreelyNext/miraiskey.git">
-	<img src="https://git.freelynext.sbs/FreelyNext/miraiskey/raw/branch/develop/packages/frontend/assets/miraiskey.png" alt="Miraiskey logo" style="border-radius:50%" width="400"/>
+<a href="https://github.com/FREELYNEXT/miraiskey.git">
+	<img src="/packages/frontend/assets/miraiskey.png" alt="Miraiskey logo" style="border-radius:50%" width="400"/>
 </a>
 
-**🌎 **[Miraiskey](https://git.freelynext.sbs/FreelyNext/miraiskey.git)** is an open source decentralized social media platform based on Sharkey! 🚀**
+**🌎 **[Miraiskey](https://github.com/FREELYNEXT/miraiskey.git)** is an open source decentralized social media platform based on Sharkey! 🚀**
 
 ---
 <a href="./CONTRIBUTING.md">

@@ -4,7 +4,7 @@
 	"codename": "Mirai",
 	"repository": {
 		"type": "git",
-		"url": "https://git.freelynext.sbs/FreelyNext/miraiskey.git"
+		"url": "https://github.com/FREELYNEXT/miraiskey.git"
 	},
 	"packageManager": "pnpm@8.10.5",
 	"workspaces": [

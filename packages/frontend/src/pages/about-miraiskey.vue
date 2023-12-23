@@ -29,7 +29,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				</div>
 				<FormSection>
 					<div class="_gaps_s">
-						<FormLink to="https://git.freelynext.sbs/FreelyNext/miraiskey" external>
+						<FormLink to="https://github.com/FREELYNEXT/miraiskey" external>
 							<template #icon><i class="ph-code ph-bold ph-lg"></i></template>
 							{{ i18n.ts._aboutMisskey.source }}
 							<template #suffix>FREELYNEXT GIT</template>
@@ -39,8 +39,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<FormSection>
 					<template #label>{{ i18n.ts._aboutMisskey.projectMembers }}</template>
 					<div :class="$style.contributors" style="margin-bottom: 8px;">
-						<a href="https://git.freelynext.sbs/164" target="_blank" :class="$style.contributor">
-							<img src="https://git.freelynext.sbs/avatars/56313e677f53aa0df83955afeeafc99dbb9c0b42ee9dbe192b6c434ba2f49264?size=512" :class="$style.contributorAvatar">
+						<a href="https://github.com/16467" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/146170742?v=4" :class="$style.contributorAvatar">
 							<span :class="$style.contributorUsername">@164</span>
 						</a>
 					</div>
