@@ -1,9 +1,9 @@
-# Reporting Security Issues
+# Report Security Issues
 
-If you discover a security issue in Sharkey, please report it by sending an
-email to [admin@transfem.org](mailto:admin@transfem.org).
+If you find a security issue with Miraiskey, click
+Please email [security@freelynext.com] (mailto: security@freelynext.com).
 
-This will allow us to assess the risk, and make a fix available before we add a
-bug report to the GitHub repository.
+This allows you to assess the risk and make it available before you add a fix.
+Submit the bug report to the GitHub repository.
 
-Thanks for helping make Sharkey safe for everyone.
+Thank you for helping make Miraiskey safe for everyone.

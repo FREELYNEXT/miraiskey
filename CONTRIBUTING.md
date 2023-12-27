@@ -29,10 +29,9 @@ PRs that do not have a clear set of do's and don'ts tend to be bloated and diffi
 Also, when you start implementation, assign yourself to the Issue (if you cannot do it yourself, ask another member to assign you). By expressing your intention to work the Issue, you can prevent conflicts in the work.
 
 ## Well-known branches
-- **`master`** branch is tracking the latest release and used for production purposes.
-- **`develop`** branch is where we work for the next release.
+- **`release`** branch is tracking the latest release and used for production purposes.
+- **`master`** branch is where we work for the next release.
 	- When you create a PR, basically target it to this branch.
-- **`l10n_develop`** branch is reserved for localization management.
 
 ## Creating a PR
 Thank you for your PR! Before creating a PR, please check the following:
