@@ -7,9 +7,6 @@ on:
       - release
   pull_request:
 
-env:
-  NODE_ENV: production
-
 jobs:
   production:
     runs-on: ubuntu-latest
