@@ -2230,6 +2230,7 @@ export interface Locale {
         "username": string;
         "description": string;
         "youCanIncludeHashtags": string;
+        "hideAgeDescription": string;
         "metadata": string;
         "metadataEdit": string;
         "metadataDescription": string;

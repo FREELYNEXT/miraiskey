@@ -84,7 +84,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 						</dl>
 						<dl v-if="user.birthday" class="field">
 							<dt class="name"><i class="ph-cake ph-bold ph-lg ti-fw"></i> {{ i18n.ts.birthday }}</dt>
-							<dd class="value">{{ user.birthday.replace('-', '/').replace('-', '/') }} ({{ i18n.t('yearsOld', { age }) }})</dd>
+							<dd class="value">{{ birthdayParts.join("/") }}<span v-if="birthdayParts.length === 3"> ({{ i18n.t('yearsOld', { age }) }})</span></dd>
 						</dl>
 						<dl class="field">
 							<dt class="name"><i class="ph-calendar ph-bold ph-lg ti-fw"></i> {{ i18n.ts.registeredDate }}</dt>
@@ -194,6 +194,14 @@ import { api } from '@/os.js';
 import { defaultStore } from '@/store.js';
 import { isFollowingVisibleForMe, isFollowersVisibleForMe } from '@/scripts/isFfVisibleForMe.js';
 
+function calcBirthdayParts(birthdate: string): string[] {
+	const birthdayParts = birthdate.split('-');
+	if (birthdayParts[0] === '9999') {
+		birthdayParts.shift();
+	}
+	return birthdayParts;
+}
+
 function calcAge(birthdate: string): number {
 	const date = new Date(birthdate);
 	const now = new Date();
@@ -292,9 +300,8 @@ const style = computed(() => {
 	};
 });
 
-const age = computed(() => {
-	return calcAge(props.user.birthday);
-});
+const age = computed(() => calcAge(props.user.birthday));
+const birthdayParts = computed(() => calcBirthdayParts(props.user.birthday));
 
 function menu(ev: MouseEvent) {
 	const { menu, cleanup } = getUserMenu(user.value, router);
