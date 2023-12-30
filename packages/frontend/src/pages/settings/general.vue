@@ -159,7 +159,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 			<MkRadios v-model="cornerRadius">
 				<template #label>{{ i18n.ts.cornerRadius }}</template>
-				<option value="null"><i class="sk-icons sk-shark ph-bold" style="top: 2px;position: relative;"></i> Sharkey</option>
+				<option :value="null"><i class="sk-icons sk-shark ph-bold" style="top: 2px;position: relative;"></i> Sharkey</option>
 				<option value="misskey"><i class="sk-icons sk-misskey ph-bold" style="top: 2px;position: relative;"></i> Misskey</option>
 			</MkRadios>
 		</div>
@@ -265,7 +265,7 @@ import { claimAchievement } from '@/scripts/achievements.js';
 
 const lang = ref(miLocalStorage.getItem('lang'));
 const fontSize = ref(miLocalStorage.getItem('fontSize'));
-const cornerRadius = ref(miLocalStorage.getItem('cornerRadius') != misskey);
+const cornerRadius = ref(miLocalStorage.getItem('cornerRadius'));
 const useSystemFont = ref(miLocalStorage.getItem('useSystemFont') != null);
 const dataSaver = ref(defaultStore.state.dataSaver);
 
@@ -340,7 +340,7 @@ watch(fontSize, () => {
 });
 
 watch(cornerRadius, () => {
-	if (cornerRadius.value) {
+	if (cornerRadius.value == null) {
 		miLocalStorage.removeItem('cornerRadius');
 	} else {
 		miLocalStorage.setItem('cornerRadius', cornerRadius.value);
