@@ -9,25 +9,24 @@ SPDX-License-Identifier: AGPL-3.0-only
 	<MkSpacer :contentMax="700" :marginMin="16" :marginMax="32">
 		<FormSuspense :p="init">
 			<FormSection>
-				<template #label>Translation</template>
 				<MkRadios v-model="translatorType">
-							<template #label>Translator type</template>
-							<option :value="null">{{ i18n.ts.none }}</option>
-							<option value="DeepL">DeepL</option>
-							<option value="GoogleNoAPI">Google Translate(without API)</option>
-						</MkRadios>
+						<template #label>Translator type</template>
+						<option :value="null">{{ i18n.ts.none }}</option>
+						<option value="Deepl">DeepL</option>
+						<option value="GoogleNoAPI">Google Translate(without API)</option>
+				</MkRadios>
 
-						<template v-if="translatorType === 'DeepL'">
-							<div class="_gaps_m">
-								<MkInput v-model="deeplAuthKey">
-									<template #prefix><i class="ph-key ph-bold ph-lg"></i></template>
-									<template #label>DeepL Auth Key</template>
-								</MkInput>
-								<MkSwitch v-model="deeplIsPro">
-									<template #label>Pro account</template>
-								</MkSwitch>
-							</div>
-						</template>
+					<template v-if="provider === 'deepl'">
+						<div class="_gaps_m">
+							<MkInput v-model="deeplAuthKey">
+								<template #prefix><i class="ph-key ph-bold ph-lg"></i></template>
+								<template #label>DeepL Auth Key</template>
+							</MkInput>
+							<MkSwitch v-model="deeplIsPro">
+								<template #label>Pro account</template>
+							</MkSwitch>
+						</div>
+					</template>
 					</FormSection>
 		</FormSuspense>
 	</MkSpacer>
