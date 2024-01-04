@@ -2,7 +2,9 @@ version: "3"
 
 services:
   web:
-    image: freelynext/miraiskey:latest
+#   replace image below with git.joinsharkey.org/sharkey/sharkey:stable on next release
+#   image: ghcr.io/transfem-org/sharkey:stable
+    build: .
     restart: always
     links:
       - db
@@ -16,16 +18,16 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - mirai
+      - shonk
     volumes:
-      - ./files:/miraiskey/files
-      - ./.config:/miraiskey/.config:ro
+      - ./files:/sharkey/files
+      - ./.config:/sharkey/.config:ro
 
   redis:
     restart: always
     image: redis:7-alpine
     networks:
-      - mirai
+      - shonk
     volumes:
       - ./redis:/data
     healthcheck:
@@ -37,7 +39,7 @@ services:
     restart: always
     image: postgres:15-alpine
     networks:
-      - mirai
+      - shonk
     env_file:
       - .config/docker.env
     volumes:
@@ -54,10 +56,10 @@ services:
 #      - MEILI_NO_ANALYTICS=true
 #      - MEILI_ENV=production
 #    networks:
-#      - mirai
+#      - shonk
 #    volumes:
 #      - ./meili_data:/meili_data
 
 
 networks:
-  mirai:
+  shonk:
