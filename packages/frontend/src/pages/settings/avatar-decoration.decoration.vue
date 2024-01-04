@@ -10,7 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 >
 	<div :class="$style.name"><MkCondensedLine :minScale="0.5">{{ decoration.name }}</MkCondensedLine></div>
 	<MkAvatar style="width: 60px; height: 60px;" :user="$i" :decorations="[{ url: decoration.url, angle, flipH, offsetX, offsetY }]" forceShowDecoration/>
-	<i v-if="decoration.roleIdsThatCanBeUsedThisDecoration.length > 0 && !$i.roles.some(r => decoration.roleIdsThatCanBeUsedThisDecoration.includes(r.id))" :class="$style.lock" class="ti ti-lock"></i>
+	<i v-if="decoration.roleIdsThatCanBeUsedThisDecoration.length > 0 && !$i.roles.some(r => decoration.roleIdsThatCanBeUsedThisDecoration.includes(r.id))" :class="$style.lock" class="ph-lock ph-bold ph-lg"></i>
 </div>
 </template>
 
@@ -42,7 +42,7 @@ const emit = defineEmits<{
 	cursor: pointer;
 	padding: 16px 16px 28px 16px;
 	border: solid 2px var(--divider);
-	border-radius: 8px;
+	border-radius: var(--radius-sm);
 	text-align: center;
 	font-size: 90%;
 	overflow: clip;

@@ -13,7 +13,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 	<pre v-else-if="show" :class="$style.codeBlockFallbackRoot"><code :class="$style.codeBlockFallbackCode">{{ code }}</code></pre>
 	<button v-else :class="$style.codePlaceholderRoot" @click="show = true">
 		<div :class="$style.codePlaceholderContainer">
-			<div><i class="ti ti-code"></i> {{ i18n.ts.code }}</div>
+			<div><i class="ph-code ph-bold ph-lg"></i> {{ i18n.ts.code }}</div>
 			<div>{{ i18n.ts.clickToShow }}</div>
 		</div>
 	</button>
@@ -56,7 +56,7 @@ const XCode = defineAsyncComponent(() => import('@/components/MkCode.core.vue'))
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
-	border-radius: 8px;
+	border-radius: var(--radius-sm);
 }
 
 .codeBlockFallbackCode {
@@ -74,7 +74,7 @@ const XCode = defineAsyncComponent(() => import('@/components/MkCode.core.vue'))
 	cursor: pointer;
 
 	box-sizing: border-box;
-	border-radius: 8px;
+	border-radius: var(--radius-sm);
 	padding: 24px;
 	margin-top: 4px;
 	color: #D4D4D4;

@@ -11,7 +11,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 		<!-- new avatar container with line (post section) -->
 		<div :class="$style.avatarContainer">
 			<MkAvatar :class="$style.avatar" :user="note.user" link preview/>
-			<template v-if="note.repliesCount > 0">
+			<template v-if="note.repliesCount > 0 && replies.length > 0">
 				<div v-if="hideLine" :class="$style.threadLine"></div>
 			</template>
 		</div>
@@ -152,16 +152,16 @@ const isRenote = (
 );
 
 async function addReplyTo(replyNote: Misskey.entities.Note) {
-		replies.value.unshift(replyNote);
-		appearNote.value.repliesCount += 1;
+	replies.value.unshift(replyNote);
+	appearNote.value.repliesCount += 1;
 }
 
 async function removeReply(id: Misskey.entities.Note['id']) {
-		const replyIdx = replies.value.findIndex(note => note.id === id);
-		if (replyIdx >= 0) {
-			replies.value.splice(replyIdx, 1);
-			appearNote.value.repliesCount -= 1;
-		}
+	const replyIdx = replies.value.findIndex(note => note.id === id);
+	if (replyIdx >= 0) {
+		replies.value.splice(replyIdx, 1);
+		appearNote.value.repliesCount -= 1;
+	}
 }
 
 useNoteCapture({
@@ -237,7 +237,7 @@ function like(): void {
 		noteId: props.note.id,
 		override: defaultLike.value,
 	});
-	const el = reactButton.value as HTMLElement | null | undefined;
+	const el = likeButton.value as HTMLElement | null | undefined;
 	if (el) {
 		const rect = el.getBoundingClientRect();
 		const x = rect.left + (el.offsetWidth / 2);
@@ -437,10 +437,11 @@ if (props.detail) {
 
 .line {
 	position: absolute;
-	height: 100%;
+	height: calc(100% - 58px); // 58px of avatar height (see SkNote)
 	left: 60px;
 	// using solid instead of dotted, stylelistic choice
 	border-left: 2.5px solid rgb(174, 174, 174);
+	top: 86px; // 28px of .root padding, plus 58px of avatar height (see SkNote)
 }
 
 .footer {

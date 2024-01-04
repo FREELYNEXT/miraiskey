@@ -110,8 +110,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 						</MkFolder>
 
 						<div>
-							<MkButton v-if="iAmModerator" inline danger style="margin-right: 8px;" @click="unsetUserAvatar"><i class="ti ti-user-circle"></i> {{ i18n.ts.unsetUserAvatar }}</MkButton>
-							<MkButton v-if="iAmModerator" inline danger @click="unsetUserBanner"><i class="ti ti-photo"></i> {{ i18n.ts.unsetUserBanner }}</MkButton>
+							<MkButton v-if="iAmModerator" inline danger style="margin-right: 8px;" @click="unsetUserAvatar"><i class="ph-user-circle ph-bold ph-lg"></i> {{ i18n.ts.unsetUserAvatar }}</MkButton>
+							<MkButton v-if="iAmModerator" inline danger @click="unsetUserBanner"><i class="ph-photo ph-bold ph-lg"></i> {{ i18n.ts.unsetUserBanner }}</MkButton>
 						</div>
 						<MkButton v-if="$i.isAdmin" inline danger @click="deleteAccount">{{ i18n.ts.deleteAccount }}</MkButton>
 					</div>
@@ -225,9 +225,9 @@ const tab = ref(props.initialTab);
 const chartSrc = ref('per-user-notes');
 const user = ref<null | Misskey.entities.UserDetailed>();
 const init = ref<ReturnType<typeof createFetcher>>();
-const info = ref();
-const ips = ref(null);
-const ap = ref(null);
+const info = ref<any>();
+const ips = ref<Misskey.entities.AdminGetUserIpsResponse | null>(null);
+const ap = ref<any>(null);
 const moderator = ref(false);
 const silenced = ref(false);
 const approved = ref(false);

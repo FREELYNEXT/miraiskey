@@ -13,10 +13,9 @@ import { DEFAULT_POLICIES } from '@/core/RoleService.js';
 export const meta = {
 	tags: ['meta'],
 
-	kind: 'read:admin',
-
 	requireCredential: true,
 	requireAdmin: true,
+	kind: 'read:admin:meta',
 
 	res: {
 		type: 'object',
@@ -401,6 +400,10 @@ export const meta = {
 				optional: false, nullable: true,
 			},
 			name: {
+				type: 'string',
+				optional: false, nullable: true,
+			},
+			shortName: {
 				type: 'string',
 				optional: false, nullable: true,
 			},
