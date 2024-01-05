@@ -86,6 +86,10 @@ SPDX-License-Identifier: AGPL-3.0-only
 					:isAnim="allowAnim"
 				/>
 				<a v-if="appearNote.renote != null" :class="$style.rn">RN:</a>
+				<div v-if="defaultStore.state.showTranslateButtonInNote" style="padding-top: 5px; color: var(--accent);">
+					<button v-if="!(translating || translation)" ref="translateButton" class="_button" @mousedown="translate()">{{ i18n.ts.translateNote }}</button>
+					<button v-else class="_button" @mousedown="translation = null">{{ i18n.ts.closeTranslate }}</button>
+				</div>
 				<div v-if="translating || translation" :class="$style.translation">
 					<MkLoading v-if="translating" mini/>
 					<div v-else>
@@ -266,6 +270,17 @@ const props = defineProps<{
 	note: Misskey.entities.Note;
 	expandAllCws?: boolean;
 }>();
+
+async function translate(): Promise<void> {
+	if (translation.value != null) return;
+	translating.value = true;
+	const res = await os.api('notes/translate', {
+		noteId: appearNote.id,
+		targetLang: miLocalStorage.getItem('lang') ?? navigator.language,
+	});
+	translating.value = false;
+	translation.value = res;
+}
 
 const inChannel = inject('inChannel', null);
 

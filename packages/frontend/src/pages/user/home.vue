@@ -76,6 +76,9 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<div class="description">
 						<Mfm v-if="user.description" :text="user.description" :isNote="false" :author="user"/>
 						<p v-else class="empty">{{ i18n.ts.noAccountDescription }}</p>
+						<div v-if="user.description">
+								<MkButton v-if="!(translating || translation)" class="translateButton" small @click="translate"><i class="ti ti-language-hiragana"></i> {{ i18n.ts.translateProfile }}</MkButton>
+								<MkButton v-else class="translateButton" small @click="translation = null">{{ i18n.ts.closeTranslate }}</MkButton>
 					</div>
 					<div class="fields system">
 						<dl v-if="user.location" class="field">
