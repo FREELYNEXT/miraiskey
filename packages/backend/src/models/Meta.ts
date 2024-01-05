@@ -320,7 +320,7 @@ export class MiMeta {
 	public swPrivateKey: string | null;
 
 	@Column('varchar', {
-		length: 32,
+		length: 1024,
 		nullable: true,
 	})
 	public translatorType: string | null;

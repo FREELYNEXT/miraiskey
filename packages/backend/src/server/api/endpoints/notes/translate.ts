@@ -1,9 +1,10 @@
 /*
- * SPDX-FileCopyrightText: syuilo and other misskey contributors
+ * SPDX-FileCopyrightText: syuilo and other misskey, cherrypick contributors
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 import { URLSearchParams } from 'node:url';
+import fs from 'node:fs';
 import { Injectable } from '@nestjs/common';
 import { translate } from '@vitalets/google-translate-api';
 import { TranslationServiceClient } from '@google-cloud/translate';
@@ -12,6 +13,7 @@ import { NoteEntityService } from '@/core/entities/NoteEntityService.js';
 import { MetaService } from '@/core/MetaService.js';
 import { HttpRequestService } from '@/core/HttpRequestService.js';
 import { GetterService } from '@/server/api/GetterService.js';
+import { createTemp } from '@/misc/create-temp.js';
 import { RoleService } from '@/core/RoleService.js';
 import { ApiError } from '../../error.js';
 
@@ -57,11 +59,6 @@ export const paramDef = {
 	},
 	required: ['noteId', 'targetLang'],
 } as const;
-
-const translatorServices = [
-	'DeepL',
-	'GoogleNoAPI',
-];
 
 @Injectable()
 export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-disable-line import/no-default-export
@@ -111,12 +108,12 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 				if (instance.deeplAuthKey == null) {
 					return 204; // TODO: 良い感じのエラー返す
 				}
-				translationResult = await this.translateDeepL(note.text, targetLang, instance.deeplAuthKey, instance.deeplIsPro, instance.translatorType);
+				translationResult = await this.translateDeepL((note.cw ? note.cw + '\n' : '') + note.text, targetLang, instance.deeplAuthKey, instance.deeplIsPro, instance.translatorType);
 			} else if (instance.translatorType === 'google_no_api') {
 				let targetLang = ps.targetLang;
 				if (targetLang.includes('-')) targetLang = targetLang.split('-')[0];
 
-				const { text, raw } = await translate(note.text, { to: targetLang });
+				const { text, raw } = await translate((note.cw ? note.cw + '\n' : '') + note.text, { to: targetLang });
 
 				return {
 					sourceLang: raw.src,
@@ -124,10 +121,11 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 					translator: translatorServices,
 				};
 			} else if (instance.translatorType === 'ctav3') {
-				if (instance.ctav3SaKey == null) { return 204; } else if (instance.ctav3ProjectId == null) { return 204; }
-				else if (instance.ctav3Location == null) { return 204; }
+				if (instance.ctav3SaKey == null) return 204;
+				else if (instance.ctav3ProjectId == null) return 204;
+				else if (instance.ctav3Location == null) return 204;
 				translationResult = await this.apiCloudTranslationAdvanced(
-					note.text, targetLang, instance.ctav3SaKey, instance.ctav3ProjectId, instance.ctav3Location, instance.ctav3Model, instance.ctav3Glossary, instance.translatorType,
+					(note.cw ? note.cw + '\n' : '') + note.text, targetLang, instance.ctav3SaKey, instance.ctav3ProjectId, instance.ctav3Location, instance.ctav3Model, instance.ctav3Glossary, instance.translatorType,
 				);
 			} else {
 				throw new Error('Unsupported translator type');
@@ -175,9 +173,8 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 	private async apiCloudTranslationAdvanced(text: string, targetLang: string, saKey: string, projectId: string, location: string, model: string | null, glossary: string | null, provider: string) {
 		const [path, cleanup] = await createTemp();
 		fs.writeFileSync(path, saKey);
-		process.env.GOOGLE_APPLICATION_CREDENTIALS = path;
 
-		const translationClient = new TranslationServiceClient();
+		const translationClient = new TranslationServiceClient({ keyFilename: path });
 
 		const detectRequest = {
 			parent: `projects/${projectId}/locations/${location}`,
@@ -212,8 +209,8 @@ export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-
 		const translatedText = translateResponse.translations && translateResponse.translations[0]?.translatedText;
 		const detectedLanguageCode = translateResponse.translations && translateResponse.translations[0]?.detectedLanguageCode;
 
-		delete process.env.GOOGLE_APPLICATION_CREDENTIALS;
 		cleanup();
+
 		return {
 			sourceLang: detectedLanguage !== null ? detectedLanguage : detectedLanguageCode,
 			text: translatedText,
