@@ -54,22 +54,22 @@ import { fetchInstance } from '@/instance.js';
 import { i18n } from '@/i18n.js';
 import { definePageMetadata } from '@/scripts/page-metadata.js';
 
-let translatorType: string | null = $ref(null);
-let deeplAuthKey: string = $ref('');
-let deeplIsPro: boolean = $ref(false);
+const translatorType = ref<string | null>(null);
+const deeplAuthKey = ref<string>('');
+const deeplIsPro = ref<boolean>(false);
 
 async function init() {
 	const meta = await os.api('admin/meta');
-	translatorType = meta.translatorType;
-	deeplAuthKey = meta.deeplAuthKey;
-	deeplIsPro = meta.deeplIsPro;
+	translatorType.value = meta.translatorType;
+	deeplAuthKey.value = meta.deeplAuthKey;
+	deeplIsPro.value = meta.deeplIsPro;
 }
 
 function save() {
 	os.apiWithDialog('admin/update-meta', {
-		translatorType,
-		deeplAuthKey,
-		deeplIsPro,
+		translatorType: translatorType.value,
+		deeplAuthKey: deeplAuthKey.value,
+		deeplIsPro: deeplIsPro.value,
 	}).then(() => {
 		fetchInstance();
 	});
